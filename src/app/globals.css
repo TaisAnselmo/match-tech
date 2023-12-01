@@ -190,7 +190,8 @@ a {
 .lang span {
   font-size: 12px;
 }
-#email-or-phone {
+#email-or-phone,
+#password {
   height: 28px;
   width: 336px;
   padding: 13px 15px;
@@ -217,7 +218,9 @@ label {
   transition: 0.1s ease all;
 }
 #email-or-phone:focus ~ label,
-#email-or-phone:valid ~ label {
+#email-or-phone:valid ~ label,
+#password:focus ~ label,
+#password:valid ~ label {
   margin-left: 10px;
   transform: translateY(-64px);
   font-size: 12px;
@@ -241,6 +244,39 @@ span {
 .saiba {
   margin: 0 !important;
   padding: 0 !important;
+}
+.mostraSenha {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: 48px !important;
+  width: 100% !important;
+}
+.mostraSenha label,
+.mostraSenha input {
+  padding: 0 !important;
+  height: 46px;
+}
+.mostraSenha input[type='checkbox'] {
+  height: 18px;
+  width: 18px;
+}
+.unchecked {
+  -webkit-appearance: none;
+  border: 2px solid rgb(32, 33, 36) !important;
+  border-width: 0 24px;
+  color: rgb(32, 33, 36);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.checked {
+  background: #1a73e8;
+  border-color: #1a73e8;
+}
+.mostraSenha label {
+  transform: translateY(14px);
+  font-size: 14px;
+  color: black;
 }
 .avancar {
   height: 36px;
