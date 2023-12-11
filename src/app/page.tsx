@@ -2,9 +2,20 @@
 import React, { useState, useEffect } from 'react';
 export default function Home() {
   const [isLogin, setIsLogin] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // novo estado
 
   const handleButtonClick = () => {
     setIsLogin(!isLogin);
+    setInputValue(""); // limpa o input
+  };
+
+  const handleInputChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    setInputValue(event.target.value); // atualiza o valor do input
+  };
+
+  const handleCheckboxChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
+    setShowPassword(event.target.checked); // atualiza o estado quando o checkbox muda
   };
   return (
     <div className="App">
@@ -60,12 +71,14 @@ export default function Home() {
         )}
       </div>
       <form>
-        <input
+      <input
           type={isLogin ? 'email' : 'password'}
-          id={isLogin ? 'email-or-phone' : 'password'}
-          name={isLogin ? 'email-or-phone' : 'password'}
-          required
-        />
+        id={isLogin ? 'email-or-phone' : 'password'}
+        name={isLogin ? 'email-or-phone' : 'password'}
+        value={inputValue} // controla o valor do input
+        onChange={handleInputChange} // atualiza o valor do input quando ele muda
+        required
+      />
         <label
           className={isLogin ? 'labelEmail' : 'labelPassword'}
           htmlFor={isLogin ? 'email-or-phone' : 'password'}
@@ -77,13 +90,13 @@ export default function Home() {
             Esqueceu seu e-mail?
           </button>
         )}
-        {!isLogin && (
-          <div className="mostraSenha">
+         {!isLogin && (
+        <div className="mostraSenha">
             <input type="checkbox" id="mostrar-senha" className="uncheked" />
-            <label htmlFor="mostrar-senha">Mostrar senha</label>
-          </div>
-        )}
-        {isLogin && (
+          <label htmlFor="mostrar-senha">Mostrar senha</label>
+        </div>
+      )}
+       {isLogin && (
           <p>
             Não está no seu computador? Use uma janela de navegação privada para
             fazer login.
@@ -109,8 +122,8 @@ export default function Home() {
             </button>
           )}
           <button type="submit" className="avancar" onClick={handleButtonClick}>
-            Avançar
-          </button>
+        Avançar
+      </button>
         </div>
         {
           <div className="lang">
